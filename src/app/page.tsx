@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useMemo, useState } from "react";
 import { useStore } from "@/lib/store";
-import { WEEK_METRICS, type WeekMetricKey } from "@/lib/types";
+import { WEEK_METRICS, PHASE, type WeekMetricKey } from "@/lib/types";
 import {
   TIMEFRAMES, resolveTimeframe, weeksInRange, weekRangeLabel, weekFullLabel,
   todayISO, type TimeframeId,
@@ -101,23 +101,23 @@ export default function Dashboard() {
       {/* --------------------------------------------------------- headline */}
       <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
         <StatTile
-          size="lg" label="Revenue Closed" color="#008300"
+          size="lg" label="Revenue Closed" color={PHASE.won}
           value={money(totals.revenue, currency, true)}
           sub={`${num(totals.closes)} closes · avg ${d.avgDealSize ? money(d.avgDealSize, currency, true) : "—"}`}
         />
         <StatTile
-          size="lg" label="Open Pipeline" color="#3987e5"
+          size="lg" label="Open Pipeline" color={PHASE.proposals}
           value={money(pipe.openValue, currency, true)}
           sub={`${pipe.openCount} open · ${money(pipe.weightedValue, currency, true)} weighted`}
           hint="Weighted = each deal's value × its stage probability"
         />
         <StatTile
-          size="lg" label="Meetings Held" color="#c98500"
+          size="lg" label="Meetings Held" color={PHASE.meetings}
           value={num(totals.meetings_held)}
           sub={`${num(totals.meetings_booked)} booked · ${pct(d.showRate, 0)} show rate`}
         />
         <StatTile
-          size="lg" label="Dials" color="#d95926"
+          size="lg" label="Dials" color={PHASE.prospecting}
           value={num(totals.dials)}
           sub={`${pct(d.connectRate, 0)} connect rate · ${d.perWeek("dials").toFixed(0)}/wk`}
         />
@@ -175,17 +175,17 @@ export default function Dashboard() {
         <Card className="p-6 sm:p-7">
           <h2 className="text-2xl font-bold tracking-tight mb-1">Conversion funnel</h2>
           <p className="text-ink-400 mb-6">
-            Bar length is the count; the % is conversion from the step above.
+            Bar length is the count; the % is conversion from the step above. Colour marks the funnel phase.
           </p>
           <Funnel
             steps={[
-              { label: "Dials",     value: totals.dials,               color: "#3987e5" },
-              { label: "Connects",  value: totals.connects,            color: "#3987e5" },
-              { label: "Convos",    value: totals.conversations,       color: "#3987e5" },
-              { label: "Booked",    value: totals.meetings_booked,     color: "#3987e5" },
-              { label: "Held",      value: totals.meetings_held,       color: "#3987e5" },
-              { label: "Submitted", value: totals.proposals_submitted, color: "#3987e5" },
-              { label: "Closes",    value: totals.closes,              color: "#3987e5" },
+              { label: "Dials",     value: totals.dials,               color: PHASE.prospecting },
+              { label: "Connects",  value: totals.connects,            color: PHASE.prospecting },
+              { label: "Convos",    value: totals.conversations,       color: PHASE.prospecting },
+              { label: "Booked",    value: totals.meetings_booked,     color: PHASE.meetings },
+              { label: "Held",      value: totals.meetings_held,       color: PHASE.meetings },
+              { label: "Submitted", value: totals.proposals_submitted, color: PHASE.proposals },
+              { label: "Closes",    value: totals.closes,              color: PHASE.won },
             ]}
           />
           <div className="grid grid-cols-2 gap-4 mt-7 pt-6 border-t border-ink-700">
