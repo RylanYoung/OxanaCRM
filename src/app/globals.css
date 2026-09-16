@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink-950: #070a12;
+  --color-ink-900: #0b0f1a;
+  --color-ink-850: #10151f;
+  --color-ink-800: #161c28;
+  --color-ink-700: #1f2836;
+  --color-ink-600: #2c3748;
+  --color-ink-500: #465468;
+  --color-ink-400: #6b7a91;
+  --color-ink-300: #97a5ba;
+  --color-ink-200: #c3cdda;
+  --color-ink-100: #e6ecf4;
+
+  --color-brand: #6366f1;
+  --color-brand-bright: #818cf8;
+  --color-sky-glow: #38bdf8;
+  --color-win: #22c55e;
+  --color-loss: #ef4444;
+  --color-warn: #f59e0b;
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --radius-xl2: 1.25rem;
+}
+
+* { -webkit-tap-highlight-color: transparent; }
+
+html { color-scheme: dark; }
+
+body {
+  background:
+    radial-gradient(1100px 620px at 12% -8%, #1d2440 0%, transparent 60%),
+    radial-gradient(900px 520px at 92% 4%, #14283d 0%, transparent 58%),
+    var(--color-ink-950);
+  background-attachment: fixed;
+  color: var(--color-ink-100);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  font-feature-settings: "cv02", "cv03", "cv04", "tnum";
+}
+
+/* Chunky, visible scrollbars — this app scrolls a lot. */
+::-webkit-scrollbar { width: 12px; height: 12px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--color-ink-700);
+  border-radius: 99px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--color-ink-600); background-clip: content-box; }
+
+/* Numbers line up in columns everywhere. */
+.tnum { font-variant-numeric: tabular-nums; }
+
+/* Kill the ugly native spinners on number inputs — we ship our own steppers. */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+input[type="number"] { -moz-appearance: textfield; }
+
+/* Force the native date/time picker icon to be visible on dark. */
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.75);
+  cursor: pointer;
+}
+
+@utility card {
+  background: color-mix(in srgb, var(--color-ink-850) 82%, transparent);
+  border: 1px solid var(--color-ink-700);
+  border-radius: var(--radius-xl2);
+  backdrop-filter: blur(12px);
+}
+
+@utility focus-ring {
+  outline: none;
+}
+.focus-ring:focus-visible {
+  outline: 3px solid var(--color-brand-bright);
+  outline-offset: 2px;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.rise { animation: rise 0.28s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+@keyframes pop {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.pop { animation: pop 0.18s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+@keyframes shimmer {
+  0%   { background-position: -600px 0; }
+  100% { background-position: 600px 0; }
+}
+.shimmer {
+  background: linear-gradient(90deg, #161c28 0%, #222b3b 50%, #161c28 100%);
+  background-size: 600px 100%;
+  animation: shimmer 1.4s linear infinite;
+}
+
+@media print {
+  body { background: #fff; color: #000; }
+  .no-print { display: none !important; }
+}
