@@ -2,12 +2,12 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { useStore } from "@/lib/store";
 import { isConfigured } from "@/lib/supabase";
 import { todayISO } from "@/lib/dates";
 import { AuthGate } from "./AuthGate";
-import { Skeleton } from "./ui";
+import { Skeleton, modalsOpen } from "./ui";
 import { Logo } from "./Logo";
 
 const NAV = [
@@ -23,6 +23,15 @@ const NAV = [
 export function Shell({ children }: { children: React.ReactNode }) {
   const { ready, session, tasks, toasts } = useStore();
   const path = usePathname();
+
+  // Safety net: navigation is client-side, so a scroll lock left behind by a
+  // modal would follow the user from page to page with no reload to clear it.
+  // If we land on a route with nothing open, make sure the body can scroll.
+  useEffect(() => {
+    if (modalsOpen() === 0 && document.body.style.overflow === "hidden") {
+      document.body.style.overflow = "";
+    }
+  }, [path]);
 
   // Badge on the Follow-ups tab: anything open and due today or earlier.
   const dueCount = useMemo(

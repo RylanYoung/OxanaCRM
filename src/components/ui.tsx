@@ -205,6 +205,17 @@ export function Stepper({
 
 /* ------------------------------------------------------------------- Modal */
 
+/**
+ * How many modals currently hold the body scroll lock. Module-level so nested
+ * modals don't release each other's lock. Exported so the app shell can
+ * self-heal if a lock is ever orphaned.
+ */
+let openModalCount = 0;
+
+export function modalsOpen() {
+  return openModalCount;
+}
+
 export function Modal({
   open, onClose, title, sub, children, footer, wide = false,
 }: {
@@ -218,18 +229,49 @@ export function Modal({
 }) {
   const panel = useRef<HTMLDivElement>(null);
 
+  // Escape-to-close reads onClose through a ref so that a changing onClose
+  // identity never re-runs the scroll-lock effect below.
+  const closeRef = useRef(onClose);
+  useEffect(() => { closeRef.current = onClose; });
+
   useEffect(() => {
     if (!open) return;
-    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") closeRef.current(); };
     document.addEventListener("keydown", onKey);
-    const prev = document.body.style.overflow;
+    return () => document.removeEventListener("keydown", onKey);
+  }, [open]);
+
+  /*
+    Scroll lock.
+
+    This deliberately does NOT save and restore the previous overflow value.
+    Doing so caused a site-wide scroll freeze: onClose used to be a dependency
+    here, and every call site passes an inline arrow, so any parent re-render
+    while the modal was open re-ran this effect. The re-run's cleanup restored
+    the old value, then it captured the *current* value as "previous" — which
+    was "hidden", the lock's own doing. Closing then wrote "hidden" back to
+    <body> permanently, and since navigation is client-side the page stayed
+    unscrollable until a full reload.
+
+    Counting open modals instead is immune to re-render timing, and correct
+    for a modal opened on top of another (a confirm inside an editor).
+  */
+  useEffect(() => {
+    if (!open) return;
+    openModalCount += 1;
     document.body.style.overflow = "hidden";
-    panel.current?.querySelector<HTMLElement>("input,select,textarea,button")?.focus();
     return () => {
-      document.removeEventListener("keydown", onKey);
-      document.body.style.overflow = prev;
+      openModalCount -= 1;
+      if (openModalCount <= 0) {
+        openModalCount = 0;
+        document.body.style.overflow = "";
+      }
     };
-  }, [open, onClose]);
+  }, [open]);
+
+  useEffect(() => {
+    if (open) panel.current?.querySelector<HTMLElement>("input,select,textarea,button")?.focus();
+  }, [open]);
 
   if (!open) return null;
 
