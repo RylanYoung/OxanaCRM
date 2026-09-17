@@ -69,8 +69,22 @@ export default function PipelinePage() {
         closes the deal automatically.
       </p>
 
-      {/* ---------------------------------------------------------- board */}
-      <div className="flex gap-5 overflow-x-auto pb-6 -mx-5 px-5 sm:-mx-8 sm:px-8">
+      {/*
+        ---------------------------------------------------------- board
+
+        The board is a fixed-height region and each column scrolls its own
+        cards. Letting the board grow with its tallest column meant that
+        column trapped the scroll: `overflow-x-auto` forces the vertical axis
+        into a scroll container too (CSS computes `overflow-y: visible` to
+        `auto` when the other axis isn't visible), so a long column swallowed
+        the wheel instead of the page moving, and you could not reach anything
+        past it. Bounding the height keeps the page scrollable and gives each
+        column its own scrollbar, which is how a kanban should behave anyway.
+      */}
+      <div
+        className="flex gap-5 overflow-x-auto overflow-y-hidden -mx-5 px-5 sm:-mx-8 sm:px-8
+                   h-[calc(100dvh-23rem)] min-h-[26rem] lg:h-[calc(100dvh-21rem)]"
+      >
         {stages.map((s) => {
           const items = deals.filter((d) => d.stage_id === s.id);
           const value = items.reduce((n, d) => n + Number(d.value), 0);
@@ -81,18 +95,19 @@ export default function PipelinePage() {
               onDragOver={(e) => { e.preventDefault(); setOverStage(s.id); }}
               onDragLeave={() => setOverStage((v) => (v === s.id ? null : v))}
               onDrop={() => drop(s.id)}
-              className={`shrink-0 w-[19rem] sm:w-[21rem] rounded-xl2 transition-colors
+              className={`shrink-0 w-[19rem] sm:w-[21rem] h-full flex flex-col
+                rounded-xl2 transition-colors
                 ${isOver ? "bg-brand/10 ring-2 ring-brand" : ""}`}
             >
               {/* column header */}
-              <div className="flex items-center gap-3 px-1 pb-4">
+              <div className="flex items-center gap-3 px-1 pb-4 shrink-0">
                 <span className="h-3.5 w-3.5 rounded-sm shrink-0" style={{ background: s.color }} />
                 <h2 className="text-lg font-extrabold tracking-tight grow truncate">{s.name}</h2>
                 <span className="tnum text-sm font-bold text-ink-400 shrink-0">
                   {items.length}
                 </span>
               </div>
-              <div className="px-1 pb-4 -mt-3">
+              <div className="px-1 pb-4 -mt-3 shrink-0">
                 <span className="tnum text-base font-bold text-ink-300">
                   {money(value, currency, true)}
                 </span>
@@ -102,7 +117,10 @@ export default function PipelinePage() {
               </div>
 
               {/* cards */}
-              <div className="space-y-3 min-h-24">
+              <div
+                className="space-y-3 grow overflow-y-auto overscroll-contain
+                           pr-1 pb-4 min-h-24"
+              >
                 {items.map((d) => {
                   const overdue =
                     d.status === "open" && d.expected_close && d.expected_close < todayISO();
