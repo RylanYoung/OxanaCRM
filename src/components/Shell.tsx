@@ -8,6 +8,7 @@ import { isConfigured } from "@/lib/supabase";
 import { todayISO } from "@/lib/dates";
 import { AuthGate } from "./AuthGate";
 import { Skeleton } from "./ui";
+import { Logo } from "./Logo";
 
 const NAV = [
   { href: "/",          label: "Dashboard", icon: "◎" },
@@ -52,12 +53,8 @@ export function Shell({ children }: { children: React.ReactNode }) {
         className="no-print hidden lg:flex lg:flex-col lg:w-64 lg:shrink-0 lg:h-screen
                    lg:sticky lg:top-0 border-r border-ink-800 px-4 py-6 gap-1"
       >
-        <Link href="/" className="flex items-center gap-3 px-3 mb-7 focus-ring rounded-xl">
-          <span className="h-11 w-11 rounded-2xl bg-gradient-to-br from-brand-bright to-brand
-                           flex items-center justify-center text-xl font-black text-white">
-            ⚡
-          </span>
-          <span className="text-xl font-extrabold tracking-tight">Sales CRM</span>
+        <Link href="/" className="flex items-center px-2 mb-7 focus-ring rounded-xl">
+          <Logo size={24} tagline />
         </Link>
 
         {NAV.map((n) => (

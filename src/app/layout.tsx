@@ -4,8 +4,8 @@ import { StoreProvider } from "@/lib/store";
 import { Shell } from "@/components/Shell";
 
 export const metadata: Metadata = {
-  title: "Sales CRM",
-  description: "Weekly activity tracking, pipeline and follow-ups in one place.",
+  title: "Oxana — Call & Deal Tracker",
+  description: "Track your calls, meetings and deals week by week.",
 };
 
 export const viewport: Viewport = {
@@ -22,7 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@600;700;800;900&display=swap"
           rel="stylesheet"
         />
       </head>

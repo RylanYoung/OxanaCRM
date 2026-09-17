@@ -13,8 +13,9 @@
   --color-ink-200: #c3cdda;
   --color-ink-100: #e6ecf4;
 
-  --color-brand: #6366f1;
-  --color-brand-bright: #818cf8;
+  --color-brand-deep: #0a4f4f;
+  --color-brand: #0e9c90;
+  --color-brand-bright: #14d6c4;
   --color-sky-glow: #38bdf8;
   --color-win: #22c55e;
   --color-loss: #ef4444;
@@ -31,8 +32,8 @@ html { color-scheme: dark; }
 
 body {
   background:
-    radial-gradient(1100px 620px at 12% -8%, #1d2440 0%, transparent 60%),
-    radial-gradient(900px 520px at 92% 4%, #14283d 0%, transparent 58%),
+    radial-gradient(1100px 620px at 12% -8%, #0d2f33 0%, transparent 60%),
+    radial-gradient(900px 520px at 92% 4%, #0b2a35 0%, transparent 58%),
     var(--color-ink-950);
   background-attachment: fixed;
   color: var(--color-ink-100);

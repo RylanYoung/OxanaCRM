@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Sales CRM — MCP server
+ * Oxana — Call & Deal Tracker: MCP server
  * ----------------------------------------------------------------------------
  * Exposes the CRM to Claude as tools, so you can say things like
  *   "add Dana Okafor at Acme as a contact and book a follow-up for Tuesday"

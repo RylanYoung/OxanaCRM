@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { supabase, isConfigured, getRemember, setRemember } from "@/lib/supabase";
 import { Button, Card, Field, Input } from "./ui";
+import { Logo } from "./Logo";
 
 /**
  * Sign-in.
@@ -139,12 +140,8 @@ export function AuthGate() {
     <div className="min-h-screen flex items-center justify-center p-6">
       <div className="w-full max-w-md rise">
         <div className="flex flex-col items-center mb-9">
-          <span className="h-16 w-16 rounded-3xl bg-gradient-to-br from-brand-bright to-brand
-                           flex items-center justify-center text-3xl mb-4">
-            ⚡
-          </span>
-          <h1 className="text-4xl font-extrabold tracking-tight">Sales CRM</h1>
-          <p className="text-ink-400 mt-2 text-lg">Your numbers, your pipeline, one place.</p>
+          <Logo size={44} />
+          <p className="text-ink-400 mt-4 text-lg">Call &amp; Deal Tracker</p>
         </div>
 
         <Card className="p-8">
