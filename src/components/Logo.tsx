@@ -25,7 +25,9 @@ export function Wordmark({
         letterSpacing: size * 0.18,
         // trailing tracking would otherwise push the mark off-centre
         paddingRight: size * 0.18,
-        background: "linear-gradient(135deg, var(--color-brand-deep) 0%, var(--color-brand) 45%, var(--color-brand-bright) 100%)",
+        // Top-to-bottom, matching the source artwork: deep teal crown fading to
+        // bright cyan at the baseline.
+        background: "linear-gradient(to bottom, var(--color-brand-deep) 0%, var(--color-brand) 50%, var(--color-brand-bright) 100%)",
         WebkitBackgroundClip: "text",
         backgroundClip: "text",
         color: "transparent",
@@ -56,25 +58,28 @@ export function LogoMark({ size = 44 }: { size?: number }) {
   );
 }
 
-/** Lockup: mark + wordmark + optional tagline. */
+/**
+ * Lockup: wordmark + optional tagline.
+ *
+ * Deliberately no LogoMark here — the wordmark already opens on a circular O,
+ * so setting the mark beside it reads as "O OXANA". The mark is for
+ * icon-only slots (favicon, collapsed nav) where no wordmark is present.
+ */
 export function Logo({
   size = 26,
   tagline = false,
 }: { size?: number; tagline?: boolean }) {
   return (
-    <span className="flex items-center gap-3 min-w-0">
-      <LogoMark size={size * 1.5} />
-      <span className="flex flex-col min-w-0">
-        <Wordmark size={size} />
-        {tagline && (
-          <span
-            className="text-ink-400 font-semibold uppercase truncate"
-            style={{ fontSize: size * 0.34, letterSpacing: size * 0.05, marginTop: size * 0.18 }}
-          >
-            Call &amp; Deal Tracker
-          </span>
-        )}
-      </span>
+    <span className="flex flex-col min-w-0">
+      <Wordmark size={size} />
+      {tagline && (
+        <span
+          className="text-ink-400 font-semibold uppercase truncate"
+          style={{ fontSize: size * 0.32, letterSpacing: size * 0.06, marginTop: size * 0.22 }}
+        >
+          Call &amp; Deal Tracker
+        </span>
+      )}
     </span>
   );
 }
