@@ -197,7 +197,7 @@ export function ContactModal({
             <Field label="Company">
               <Select value={f.account_id ?? ""}
                       onChange={(e) => set({ account_id: e.target.value || null })}>
-                <option value="">— none —</option>
+                <option value="">None</option>
                 {accounts.map((a) => <option key={a.id} value={a.id}>{a.name}</option>)}
               </Select>
             </Field>
@@ -361,21 +361,21 @@ export function TaskModal({
             <Field label="Account">
               <Select value={f.account_id ?? ""}
                       onChange={(e) => set({ account_id: e.target.value || null })}>
-                <option value="">—</option>
+                <option value="">None</option>
                 {accounts.map((a) => <option key={a.id} value={a.id}>{a.name}</option>)}
               </Select>
             </Field>
             <Field label="Contact">
               <Select value={f.contact_id ?? ""}
                       onChange={(e) => set({ contact_id: e.target.value || null })}>
-                <option value="">—</option>
+                <option value="">None</option>
                 {contacts.map((c) => <option key={c.id} value={c.id}>{fullName(c)}</option>)}
               </Select>
             </Field>
             <Field label="Deal">
               <Select value={f.deal_id ?? ""}
                       onChange={(e) => set({ deal_id: e.target.value || null })}>
-                <option value="">—</option>
+                <option value="">None</option>
                 {deals.map((d) => <option key={d.id} value={d.id}>{d.name}</option>)}
               </Select>
             </Field>

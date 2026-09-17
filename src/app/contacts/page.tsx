@@ -92,7 +92,7 @@ export default function ContactsPage() {
                   <h2 className="text-xl font-bold leading-tight truncate group-hover:text-brand-bright transition-colors">
                     {fullName(c)}
                   </h2>
-                  <p className="text-base text-ink-400 truncate mt-0.5">{c.title || "—"}</p>
+                  <p className="text-base text-ink-400 truncate mt-0.5">{c.title || "No title"}</p>
                   <p className="text-base text-ink-500 truncate">
                     {c.account_id ? accName.get(c.account_id) : "No company"}
                   </p>
@@ -141,8 +141,8 @@ export default function ContactsPage() {
           contact_id: dealFor.id,
           account_id: dealFor.account_id,
           name: dealFor.account_id
-            ? `${accName.get(dealFor.account_id)} — new opportunity`
-            : `${fullName(dealFor)} — new opportunity`,
+            ? `${accName.get(dealFor.account_id)} new opportunity`
+            : `${fullName(dealFor)} new opportunity`,
         } : undefined}
       />
     </div>

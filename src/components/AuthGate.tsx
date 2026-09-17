@@ -41,7 +41,7 @@ export function AuthGate() {
     if (/Invalid login credentials/i.test(raw))
       return "That email and password don't match. If you've not signed up yet, tap “Create one”.";
     if (/User already registered/i.test(raw))
-      return "You already have an account — switching you to sign in.";
+      return "You already have an account, so switching you to sign in.";
     if (/Password should be/i.test(raw))
       return "Password needs to be at least 6 characters.";
     return raw;
@@ -61,7 +61,7 @@ export function AuthGate() {
         if (error) {
           if (/User already registered/i.test(error.message)) {
             setMode("in");
-            setMsg({ text: "You already have an account — just sign in below.", ok: true });
+            setMsg({ text: "You already have an account. Just sign in below.", ok: true });
             return;
           }
           throw error;
@@ -104,7 +104,7 @@ export function AuthGate() {
       });
       if (error) throw error;
       setMsg({
-        text: `Sent. Open the email on this device and tap the link — it'll sign you straight in.`,
+        text: `Sent. Open the email on this device and tap the link to sign straight in.`,
         ok: true,
       });
     } catch (err) {
@@ -121,7 +121,7 @@ export function AuthGate() {
         <Card className="max-w-2xl w-full p-9 rise">
           <h1 className="text-3xl font-extrabold mb-3">Almost there 👋</h1>
           <p className="text-ink-300 text-lg">
-            The app is built — it just needs{" "}
+            The app is built. It just needs{" "}
             <code className="px-2 py-0.5 rounded-lg bg-ink-800 text-brand-bright">
               NEXT_PUBLIC_SUPABASE_URL
             </code>{" "}
@@ -172,7 +172,7 @@ export function AuthGate() {
 
             <Field
               label="Password"
-              hint={mode === "up" ? "At least 6 characters. No confirmation email — you're in straight away." : undefined}
+              hint={mode === "up" ? "At least 6 characters. No confirmation email, you're in straight away." : undefined}
             >
               <Input
                 type="password" required minLength={6}

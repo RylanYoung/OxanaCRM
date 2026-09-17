@@ -92,7 +92,7 @@ export default function Dashboard() {
           <EmptyState
             icon="📈"
             title="No activity logged in this window"
-            sub="Pick a week and punch in your dials, connects and meetings — the whole dashboard fills itself in from there."
+            sub="Pick a week and punch in your dials, connects and meetings. The whole dashboard fills itself in from there."
             action={<Link href="/weekly"><Button variant="primary" size="lg">Log a week</Button></Link>}
           />
         </Card>
@@ -103,7 +103,7 @@ export default function Dashboard() {
         <StatTile
           size="lg" label="Revenue Closed" color={PHASE.won}
           value={money(totals.revenue, currency, true)}
-          sub={`${num(totals.closes)} closes · avg ${d.avgDealSize ? money(d.avgDealSize, currency, true) : "—"}`}
+          sub={`${num(totals.closes)} closes · avg ${d.avgDealSize ? money(d.avgDealSize, currency, true) : "n/a"}`}
         />
         <StatTile
           size="lg" label="Open Pipeline" color={PHASE.proposals}
@@ -189,8 +189,8 @@ export default function Dashboard() {
             ]}
           />
           <div className="grid grid-cols-2 gap-4 mt-7 pt-6 border-t border-ink-700">
-            <Ratio label="Dials per close" value={d.dialsPerClose ? d.dialsPerClose.toFixed(0) : "—"} />
-            <Ratio label="Revenue per dial" value={d.revenuePerDial ? money(d.revenuePerDial, currency) : "—"} />
+            <Ratio label="Dials per close" value={d.dialsPerClose ? d.dialsPerClose.toFixed(0) : "n/a"} />
+            <Ratio label="Revenue per dial" value={d.revenuePerDial ? money(d.revenuePerDial, currency) : "n/a"} />
             <Ratio label="Book rate" value={pct(d.bookRate, 0)} />
             <Ratio label="Close rate" value={pct(d.closeRate, 0)} />
           </div>
@@ -198,7 +198,7 @@ export default function Dashboard() {
 
         <Card className="p-6 sm:p-7">
           <h2 className="text-2xl font-bold tracking-tight mb-1">Open pipeline by stage</h2>
-          <p className="text-ink-400 mb-6">Live right now — not filtered by the date range.</p>
+          <p className="text-ink-400 mb-6">Live right now, not filtered by the date range.</p>
           {pipe.byStage.length ? (
             <StageBars rows={pipe.byStage} currency={currency} />
           ) : (

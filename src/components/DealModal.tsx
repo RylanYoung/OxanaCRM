@@ -80,7 +80,7 @@ export function DealModal({
         <div className="space-y-5">
           <Field label="Deal name">
             <Input value={f.name ?? ""} onChange={(e) => set({ name: e.target.value })}
-                   placeholder="Acme — 40 seat rollout" />
+                   placeholder="Acme 40 seat rollout" />
           </Field>
 
           <div className="grid sm:grid-cols-2 gap-5">
@@ -101,14 +101,14 @@ export function DealModal({
                 value={f.account_id ?? ""}
                 onChange={(e) => set({ account_id: e.target.value || null, contact_id: null })}
               >
-                <option value="">— none —</option>
+                <option value="">None</option>
                 {accounts.map((a) => <option key={a.id} value={a.id}>{a.name}</option>)}
               </Select>
             </Field>
             <Field label="Contact">
               <Select value={f.contact_id ?? ""}
                       onChange={(e) => set({ contact_id: e.target.value || null })}>
-                <option value="">— none —</option>
+                <option value="">None</option>
                 {pickableContacts.map((c) => (
                   <option key={c.id} value={c.id}>{fullName(c)}</option>
                 ))}

@@ -56,7 +56,7 @@ export default function ContactDetail() {
           <div className="min-w-0 grow">
             <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight">{name}</h1>
             <p className="text-ink-400 text-lg mt-1.5">
-              {contact.title || "—"}
+              {contact.title || "No title"}
               {account && (
                 <>
                   {" at "}
@@ -182,8 +182,8 @@ export default function ContactDetail() {
                          title: `Follow up with ${name}` }} />
       <DealModal open={newDeal} onClose={() => setNewDeal(false)}
                  seed={{ contact_id: contact.id, account_id: contact.account_id,
-                         name: account ? `${account.name} — new opportunity`
-                                       : `${name} — new opportunity` }} />
+                         name: account ? `${account.name} new opportunity`
+                                       : `${name} new opportunity` }} />
     </div>
   );
 }

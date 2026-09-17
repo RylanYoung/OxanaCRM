@@ -4,7 +4,7 @@ import { StoreProvider } from "@/lib/store";
 import { Shell } from "@/components/Shell";
 
 export const metadata: Metadata = {
-  title: "Oxana — Call & Deal Tracker",
+  title: "Oxana Call & Deal Tracker",
   description: "Track your calls, meetings and deals week by week.",
 };
 

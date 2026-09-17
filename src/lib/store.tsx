@@ -355,7 +355,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
     } as Partial<Task>;
     setTasks((x) => x.map((r) => (r.id === id ? { ...r, ...upd } : r)));
     await patch("tasks", id, upd as Record<string, unknown>);
-    if (done) toast("Nice — done ✓");
+    if (done) toast("Nice, done ✓");
   }, [tasks, patch, toast]);
 
   /* ----------------------------------------------------------- week logs */

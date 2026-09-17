@@ -39,7 +39,7 @@ export default function PipelinePage() {
       <Card>
         <EmptyState
           icon="▤" title="No pipeline stages yet"
-          sub="Create your stages first — you can name, colour and order them however you sell."
+          sub="Create your stages first. You can name, colour and order them however you sell."
           action={<Link href="/settings"><Button variant="primary" size="lg">Set up stages</Button></Link>}
         />
       </Card>

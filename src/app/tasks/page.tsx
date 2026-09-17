@@ -76,7 +76,7 @@ export default function TasksPage() {
           </div>
           {(links.length > 0 || t.notes) && (
             <div className="text-base text-ink-400 mt-1 truncate pl-8">
-              {links.join(" · ")}{links.length && t.notes ? " — " : ""}{t.notes ?? ""}
+              {links.join(" · ")}{links.length && t.notes ? " · " : ""}{t.notes ?? ""}
             </div>
           )}
         </button>
@@ -134,7 +134,7 @@ export default function TasksPage() {
             title={groups.done.length ? "All clear" : "No follow-ups yet"}
             sub={groups.done.length
               ? "Every follow-up is done. Nice work."
-              : "Schedule a call-back from any contact, account or deal — or add one here."}
+              : "Schedule a call-back from any contact, account or deal, or add one here."}
             action={
               <div className="flex flex-wrap gap-3 justify-center">
                 <Button variant="primary" size="lg" onClick={() => setCreating(true)}>

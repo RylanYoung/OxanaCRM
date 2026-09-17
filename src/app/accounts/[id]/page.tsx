@@ -119,7 +119,7 @@ export default function AccountDetail() {
                         color={colorFor(c.first_name + (c.last_name ?? ""))} size={48} />
                 <div className="min-w-0 grow">
                   <div className="text-lg font-bold truncate">{fullName(c)}</div>
-                  <div className="text-base text-ink-400 truncate">{c.title || "—"}</div>
+                  <div className="text-base text-ink-400 truncate">{c.title || "No title"}</div>
                 </div>
                 <Badge size="sm" color="#9085e9">{titleCase(c.status)}</Badge>
               </Link>

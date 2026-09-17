@@ -64,7 +64,7 @@ export function McpSetup() {
             Connect to Claude
           </h2>
           <p className="text-ink-400 text-base mt-1">
-            Let Claude create accounts, contacts and deals, and log your weeks — by asking.
+            Let Claude create accounts, contacts and deals, and log your weeks, just by asking.
           </p>
         </div>
         <Button
@@ -159,7 +159,7 @@ export function McpSetup() {
           <p className="text-ink-400 mt-4">
             To check it works before wiring it up, run{" "}
             <code className="px-2 py-0.5 rounded-lg bg-ink-800 text-brand-bright">npm run check</code>{" "}
-            in that same folder — it prints a live snapshot of this CRM, or tells you
+            in that same folder. It prints a live snapshot of this CRM, or tells you
             exactly which credential is wrong.
           </p>
         </details>

@@ -78,7 +78,7 @@ export default function AccountsPage() {
             title={accounts.length ? "Nothing matches that search" : "No accounts yet"}
             sub={accounts.length
               ? "Try a different search or clear the status filter."
-              : "Add the companies you're working — then hang contacts and deals off them."}
+              : "Add the companies you're working, then hang contacts and deals off them."}
             action={!accounts.length
               ? <Button variant="primary" size="lg" onClick={() => setCreating(true)}>
                   Add your first account
@@ -98,7 +98,7 @@ export default function AccountsPage() {
                 <div className="min-w-0 grow">
                   <h2 className="text-xl font-bold leading-tight truncate">{a.name}</h2>
                   <p className="text-base text-ink-400 truncate mt-0.5">
-                    {a.industry || "—"}{a.city ? ` · ${a.city}` : ""}
+                    {a.industry || "Not set"}{a.city ? ` · ${a.city}` : ""}
                   </p>
                 </div>
               </div>

@@ -138,7 +138,7 @@ export default function WeeklyPage() {
 
       {isFuture && (
         <div className="rounded-xl border-2 border-amber-500/40 bg-amber-500/10 px-5 py-4 text-amber-200 text-lg">
-          This week hasn&apos;t happened yet — you can still pre-plan targets here.
+          This week hasn&apos;t happened yet, but you can still pre-plan targets here.
         </div>
       )}
 

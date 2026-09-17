@@ -19,7 +19,7 @@ export function rate(top: number, bottom: number): number | null {
 }
 
 export function pct(v: number | null, digits = 1): string {
-  if (v === null || !isFinite(v)) return "—";
+  if (v === null || !isFinite(v)) return "n/a";
   return `${v.toFixed(digits)}%`;
 }
 
