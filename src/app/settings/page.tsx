@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useStore } from "@/lib/store";
 import type { Stage } from "@/lib/types";
 import { Button, Card, ConfirmDialog, Field, Input, Select, SectionTitle } from "@/components/ui";
+import { McpSetup } from "@/components/McpSetup";
 
 const SWATCHES = [
   "#3987e5", "#d95926", "#199e70", "#9085e9",
@@ -193,6 +194,8 @@ export default function SettingsPage() {
           ))}
         </div>
       </Card>
+
+      <McpSetup />
 
       {/* ----------------------------------------------------------- danger */}
       <Card className="p-6 sm:p-7">
