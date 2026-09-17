@@ -47,7 +47,7 @@ export default function PipelinePage() {
   }
 
   return (
-    <div className="space-y-7">
+    <div className="space-y-5">
       <div className="flex flex-wrap items-end justify-between gap-5">
         <div>
           <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight">Pipeline</h1>
@@ -64,9 +64,8 @@ export default function PipelinePage() {
         </div>
       </div>
 
-      <p className="text-ink-500 text-base">
-        Drag a card between columns to move it. Dropping into a Won or Lost column
-        closes the deal automatically.
+      <p className="text-ink-500 text-sm -mt-2">
+        Drag a card between columns to move it. Dropping into a Won or Lost column closes the deal.
       </p>
 
       {/*
@@ -83,7 +82,7 @@ export default function PipelinePage() {
       */}
       <div
         className="flex gap-5 overflow-x-auto overflow-y-hidden -mx-5 px-5 sm:-mx-8 sm:px-8
-                   h-[calc(100dvh-23rem)] min-h-[26rem] lg:h-[calc(100dvh-21rem)]"
+                   h-[calc(100dvh-17rem)] min-h-[32rem] lg:h-[calc(100dvh-13rem)]"
       >
         {stages.map((s) => {
           const items = deals.filter((d) => d.stage_id === s.id);
